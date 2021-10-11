@@ -1,0 +1,28 @@
+name: update
+
+on:
+  schedule:
+    - cron: '00 12 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          submodules: true
+      - name: Update
+        run: git submodule foreach git pull origin master
+        shell: bash
+      - name: Commit and tag
+        if: env.UPDATE_REQUIRED == '1'
+        uses: EndBug/add-and-commit@v7
+        with:
+          add: '.'
+          author_name: Daniel Huisman
+          author_email: daniel@huisman.me
+          message: 'Update to latest Yosys'
+          pull: 'NO-PULL'
+          push: true
