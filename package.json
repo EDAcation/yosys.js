@@ -25,8 +25,7 @@
         "package.json"
     ],
     "scripts": {
-        "build": "parcel build",
-        "prepublish": "yarn run build"
+        "build": "parcel build"
     },
     "dependencies": {},
     "devDependencies": {
