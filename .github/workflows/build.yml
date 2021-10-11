@@ -20,8 +20,8 @@ jobs:
         run: yarn
       - name: Install Yosys dependencies
         run: |
-          apt update
-          apt install -y bison build-essential clang flex gawk libboost-filesystem-dev libboost-python-dev libboost-system-dev libffi-dev libreadline-dev \
+          sudo apt update
+          sudo apt install -y bison build-essential clang flex gawk libboost-filesystem-dev libboost-python-dev libboost-system-dev libffi-dev libreadline-dev \
             git graphviz pkg-config python3 tcl-dev xdot zlib1g-dev
       - name: Build
         run: ./build.sh
