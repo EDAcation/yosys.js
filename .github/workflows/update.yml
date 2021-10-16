@@ -17,7 +17,6 @@ jobs:
         run: git submodule foreach git pull origin master
         shell: bash
       - name: Commit and tag
-        if: env.UPDATE_REQUIRED == '1'
         uses: EndBug/add-and-commit@v7
         with:
           add: '.'
