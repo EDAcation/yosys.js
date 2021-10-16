@@ -1,9 +1,17 @@
---- yosys/Makefile	2021-10-11 22:06:48.502794904 +0200
-+++ yosys/Makefile	2021-10-11 22:07:05.838803852 +0200
-@@ -273,7 +273,7 @@
+--- yosys/Makefile	2021-10-16 16:37:19.156884873 +0200
++++ yosys/Makefile	2021-10-16 16:37:02.520865908 +0200
+@@ -253,6 +253,7 @@
+ EMCCFLAGS += -s EXPORTED_FUNCTIONS="['_main','_run','_prompt','_errmsg','_memset']"
+ EMCCFLAGS += -s TOTAL_MEMORY=134217728
+ EMCCFLAGS += -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]'
++EMCCFLAGS += -s MODULARIZE=1 -s EXPORT_NAME='Yosys' -lnodefs.js
+ # https://github.com/kripken/emscripten/blob/master/src/settings.js
+ CXXFLAGS += $(EMCCFLAGS)
+ LDFLAGS += $(EMCCFLAGS)
+@@ -273,7 +274,7 @@
  	wget -O viz.js.part https://github.com/mdaines/viz.js/releases/download/0.0.3/viz.js
  	mv viz.js.part viz.js
- 
+
 -yosysjs-$(YOSYS_VER).zip: yosys.js yosys.wasm viz.js misc/yosysjs/*
 +yosysjs-$(YOSYS_VER).zip: yosys.js viz.js misc/yosysjs/*
  	rm -rf yosysjs-$(YOSYS_VER) yosysjs-$(YOSYS_VER).zip
