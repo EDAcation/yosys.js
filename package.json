@@ -25,13 +25,22 @@
         "package.json"
     ],
     "scripts": {
-        "build": "parcel build"
+        "lint": "eslint",
+        "clean": "rm -rf dist && mkdir -p dist && cp yosys/yosys.js yosys/yosys.wasm dist",
+        "build": "yarn run clean && yarn run lint && tsc",
+        "dev": "yarn run clean && tsc --watch"
     },
-    "dependencies": {},
+    "dependencies": {
+        "@types/emscripten": "^1.39.5",
+        "@types/node": "^16.11.0"
+    },
     "devDependencies": {
-        "@parcel/packager-ts": "2.0.0-rc.0",
-        "@parcel/transformer-typescript-types": "^2.0.0-rc.0",
-        "parcel": "^2.0.0-rc.0",
-        "typescript": "^4.4.3"
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "@typescript-eslint/parser": "^5.0.0",
+        "eslint": "^8.0.1",
+        "eslint-config-google": "^0.14.0",
+        "eslint-plugin-import": "^2.25.2",
+        "ts-node": "^10.3.0",
+        "typescript": "^4.4.4"
     }
 }

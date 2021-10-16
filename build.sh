@@ -11,8 +11,6 @@ make -j $(nproc)
 cd ..
 
 # Publish npm package
-mkdir -p dist
-cp yosys/yosys.{js,wasm} dist
 yarn run build
 
 # Undo patch
