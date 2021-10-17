@@ -31,7 +31,7 @@ jobs:
       - name: Build
         run: ./build.sh
       - name: Publish
-        run: ./publish.shenv:
+        run: ./publish.sh
         env:
           NODE_AUTH_TOKEN: ${{ secrets.YARN_TOKEN }}
       - name: Commit and tag
