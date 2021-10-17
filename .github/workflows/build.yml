@@ -50,4 +50,4 @@ jobs:
         with:
           tag_name: 'v${{ env.NEW_VERSION }}'
           name: 'Yosys.js v${{ env.NEW_VERSION }}'
-          body: 'WebAssembly version of Yosys ${{ env.UPSTREAM_COMMIT }}.'
+          body: 'WebAssembly version of Yosys https://github.com/YosysHQ/yosys/commit/${{ env.UPSTREAM_COMMIT }}.'

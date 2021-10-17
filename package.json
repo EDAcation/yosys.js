@@ -6,7 +6,7 @@
     "contributors": [
         "Daniel Huisman <daniel@huisman.me> (https://danielhuisman.io)"
     ],
-    "repository": "git@git.github.com:DanielHuisman/yosys.js.git",
+    "repository": "github:EDAcation/yosys.js",
     "keywords": [
         "yosys",
         "rtl",
