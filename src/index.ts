@@ -19,9 +19,13 @@ export class Yosys {
         }));
     }
 
-    module: YosysModule;
+    private module: YosysModule;
 
     constructor(module: YosysModule) {
         this.module = module;
+    }
+
+    getModule() {
+        return this.module;
     }
 }
