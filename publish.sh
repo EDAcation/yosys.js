@@ -16,7 +16,7 @@ VERSION=$(cat package.json \
     | grep version \
     | tail -1 \
     | awk -F: '{ print $2 }' \
-    | sed 's/[",]//g')
+    | sed 's/[", ]//g')
 MAJOR=$(echo $VERSION | cut -d '.' -f 1)
 MINOR=$(echo $VERSION | cut -d '.' -f 2)
 
@@ -30,7 +30,7 @@ NEW_VERSION=$(cat package.json \
     | grep version \
     | tail -1 \
     | awk -F: '{ print $2 }' \
-    | sed 's/[",]//g')
+    | sed 's/[", ]//g')
 
 echo "UPSTREAM_COMMIT=$UPSTREAM_COMMIT" >> $GITHUB_ENV
 echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
