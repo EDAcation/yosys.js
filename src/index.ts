@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 
-/* eslint-disable import/no-unresolved */
+/* eslint-disable @typescript-eslint/no-var-requires */
 // @ts-ignore File only exists in dist folder
-const InitYosys: EmscriptenModuleFactory<YosysModule> = import('./yosys.js');
-/* eslint-enable import/no-unresolved */
+const InitYosys: EmscriptenModuleFactory<YosysModule> = require('./yosys.js');
+/* eslint-enable @typescript-eslint/no-var-requires */
 
 export interface YosysModule extends EmscriptenModule {
     // TODO: typing
