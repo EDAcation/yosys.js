@@ -30,16 +30,16 @@ const yosys = await Yosys.initialize();
 ```
 
 ### Browser
-Without using a bundler, like Parcel, you can't currently make use of the TypeScript wrapper. Instead you need to directly load the output of Emscripten from a CDN, from example [unpkg.com](https://unpkg.com).
+Without using a bundler, like Parcel, you can't currently make use of the TypeScript wrapper. Instead, you need to directly load the Emscripten module from a CDN, from example from [unpkg.com](https://unpkg.com).
 ```html
 <!-- Lock to a certain version (recommended) -->
-<script src="https://unpkg.com/yosys@0.10.5/dist/index.js"></script>
+<script src="https://unpkg.com/yosys@0.10.5/dist/yosys.js"></script>
 
 <!-- Use latest version -->
-<script src="https://unpkg.com/yosys/dist/index.js"></script>
+<script src="https://unpkg.com/yosys/dist/yosys.js"></script>
 ```
 
-The Emscripten module is now available on the global Window object. Again, note this is not the wrapper API as detailed below.
+The Emscripten module is now available on the global Window object. It will automatically load the WebAssembly binary from the same URL prefix. Again, note this is not the wrapper API as detailed below.
 ```html
 <script>
     (async () => {
