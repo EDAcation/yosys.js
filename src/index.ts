@@ -1,31 +1,21 @@
 import fs from 'fs';
 import path from 'path';
 
-/* eslint-disable @typescript-eslint/no-var-requires */
-// @ts-ignore File only exists in dist folder
-const InitYosys: EmscriptenModuleFactory<YosysModule> = require('./yosys.js');
-/* eslint-enable @typescript-eslint/no-var-requires */
+import {Yosys, YosysModule, YosysModuleOptions} from './wrapper';
 
-export interface YosysModule extends EmscriptenModule {
-    // TODO: typing
-    run: () => void;
-}
+const WASM_BINARY = fs.readFileSync(path.join(__dirname, 'yosys.wasm'));
 
-export class Yosys {
-    static async initialize({wasmBinary, ...args}: Parameters<EmscriptenModuleFactory>[0] = {}) {
-        return new Yosys(await InitYosys({
-            wasmBinary: wasmBinary ? wasmBinary : fs.readFileSync(path.join(__dirname, 'yosys.wasm')),
-            ...args
-        }));
-    }
-
-    private module: YosysModule;
-
-    constructor(module: YosysModule) {
-        this.module = module;
-    }
-
-    getModule() {
-        return this.module;
+class YosysNodeJS extends Yosys {
+    static async initialize(moduleOptions: YosysModuleOptions) {
+        return super.initialize({
+            wasmBinary: WASM_BINARY,
+            ...moduleOptions
+        });
     }
 }
+
+export {
+    YosysNodeJS as Yosys,
+    YosysModule,
+    YosysModuleOptions
+};

@@ -14,8 +14,20 @@
         "webassembly",
         "wasm"
     ],
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "_main": "./dist/index.js",
+    "_types": "./dist/index.d.ts",
+    "targets": {
+        "node": {
+            "source": "./src/index.ts",
+            "context": "node",
+            "isLibrary": true
+        },
+        "browser": {
+            "source": "./src/browser.ts",
+            "context": "browser",
+            "isLibrary": true
+        }
+    },
     "files": [
         "dist",
         "LICENSE.md",
@@ -38,6 +50,7 @@
         "eslint": "^8.0.1",
         "eslint-config-google": "^0.14.0",
         "eslint-plugin-import": "^2.25.2",
+        "parcel": "^2.0.0",
         "ts-node": "^10.3.0",
         "typescript": "^4.4.4"
     }
