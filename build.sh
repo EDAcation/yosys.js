@@ -21,9 +21,6 @@ cp yosys.wasm ../build
 make -j $(nproc) EMCC_LDLIBS="-lnodefs.js"
 mv yosys.js ../build/yosys.node.js
 
-# Fix FS exports
-# sed -i 's|var FS=|var FS=Module.FS=|' ../build/yosys.*.js
-
 # Publish npm package
 cd ..
 yarn run build
