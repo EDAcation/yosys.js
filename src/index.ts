@@ -6,9 +6,10 @@ import path from 'path';
 const InitYosys: EmscriptenModuleFactory<YosysModule> = require('./yosys.js');
 /* eslint-enable @typescript-eslint/no-var-requires */
 
+export type EmscriptenFS = typeof FS;
+
 export interface YosysModule extends EmscriptenModule {
-    // TODO: typing
-    run: () => void;
+    FS: EmscriptenFS;
 }
 
 export class Yosys {
@@ -27,5 +28,9 @@ export class Yosys {
 
     getModule() {
         return this.module;
+    }
+
+    getFS() {
+        return this.module.FS;
     }
 }
