@@ -1,6 +1,6 @@
---- yosys/Makefile	2021-10-21 22:43:56.848765129 +0200
-+++ yosys/Makefile	2021-10-21 22:43:16.728734827 +0200
-@@ -249,21 +249,23 @@
+--- yosys/Makefile	2021-10-21 23:11:57.117965041 +0200
++++ yosys/Makefile	2021-10-21 23:11:45.765957329 +0200
+@@ -248,21 +248,23 @@
  LD = emcc
  CXXFLAGS := -std=c++11 $(filter-out -fPIC -ggdb,$(CXXFLAGS))
  ABCMKARGS += ARCHFLAGS="-DABC_USE_STDINT_H -DABC_MEMALIGN=8"
@@ -24,19 +24,19 @@
 +LDFLAGS += $(EMCC_LDFLAGS)
 +LDLIBS := -lproxyfs.js $(EMCC_LDLIBS)
  EXE = .js
-
+ 
  DISABLE_SPAWN := 1
-
+ 
  TARGETS := $(filter-out $(PROGRAM_PREFIX)yosys-config,$(TARGETS))
 -EXTRA_TARGETS += yosysjs-$(YOSYS_VER).zip
 +# EXTRA_TARGETS += yosysjs-$(YOSYS_VER).zip
-
+ 
  ifeq ($(ENABLE_ABC),1)
  LINK_ABC := 1
-@@ -274,7 +276,7 @@
+@@ -273,7 +275,7 @@
  	wget -O viz.js.part https://github.com/mdaines/viz.js/releases/download/0.0.3/viz.js
  	mv viz.js.part viz.js
-
+ 
 -yosysjs-$(YOSYS_VER).zip: yosys.js yosys.wasm viz.js misc/yosysjs/*
 +yosysjs-$(YOSYS_VER).zip: yosys.js viz.js misc/yosysjs/*
  	rm -rf yosysjs-$(YOSYS_VER) yosysjs-$(YOSYS_VER).zip
