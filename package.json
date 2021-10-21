@@ -14,19 +14,27 @@
         "webassembly",
         "wasm"
     ],
-    "_main": "./dist/index.js",
-    "_types": "./dist/index.d.ts",
     "targets": {
         "node": {
-            "source": "./src/index.ts",
             "context": "node",
-            "isLibrary": true
+            "source": "./src/node/index.ts",
+            "distDir": "./dist/node",
+            "isLibrary": true,
+            "optimize": true
         },
         "browser": {
-            "source": "./src/browser.ts",
             "context": "browser",
-            "isLibrary": true
+            "source": "./src/browser/index.ts",
+            "distDir": "./dist/browser",
+            "isLibrary": true,
+            "optimize": true
         }
+    },
+    "browser": {
+        "process": "./src/empty.js",
+        "fs": "./src/empty.js",
+        "buffer": "./src/empty.js",
+        "path": "./src/empty.js"
     },
     "files": [
         "dist",
@@ -36,9 +44,9 @@
     ],
     "scripts": {
         "lint": "eslint",
-        "clean": "rm -rf dist && mkdir -p dist && cp yosys/yosys.js yosys/yosys.wasm dist",
-        "build": "yarn run clean && yarn run lint && tsc",
-        "dev": "yarn run clean && tsc --watch"
+        "clean": "rm -rf dist",
+        "build": "yarn run clean && yarn run lint && parcel build && echo dist/browser dist/node | xargs -n 1 cp build/yosys.wasm",
+        "dev": "yarn run clean && parcel watch"
     },
     "dependencies": {
         "@types/emscripten": "^1.39.5",
