@@ -20,8 +20,7 @@ jobs:
         uses: EndBug/add-and-commit@v7
         with:
           add: '.'
-          author_name: Daniel Huisman
-          author_email: daniel@huisman.me
+          default_author: 'github_actions'
           message: 'Update to latest Yosys'
           pull: 'NO-PULL'
           push: true
