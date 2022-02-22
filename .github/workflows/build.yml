@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
           submodules: true
       - name: Setup Emscripten
-        uses: mymindstorm/setup-emsdk@v10
+        uses: mymindstorm/setup-emsdk@v11
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
@@ -29,7 +29,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y bison build-essential clang flex gawk libboost-filesystem-dev libboost-python-dev libboost-system-dev libffi-dev libreadline-dev \
-            git graphviz pkg-config python3 tcl-dev xdot zlib1g-dev
+            git graphviz pkg-config python3 tcl-dev xdot zlib1g zlib1g-dev
       - name: Build
         run: ./build.sh
       - name: Publish
