@@ -7,6 +7,7 @@ patch -p0 -f < Makefile.patch
 # Build WebAssembly
 cd yosys
 make config-emcc
+sed -i 's/ENABLE_ABC := 0/ENABLE_ABC := 1/' Makefile.conf
 make -j $(nproc)
 sed -i 's|var FS=|var FS=Module.FS=|' yosys.js
 cd ..
