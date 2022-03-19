@@ -24,3 +24,7 @@ jobs:
           message: 'Update to latest Yosys'
           pull: 'NO-PULL'
           push: true
+      - name: Trigger build workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+        run: gh workflow run build
