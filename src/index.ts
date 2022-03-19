@@ -3,7 +3,7 @@ import path from 'path';
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 // @ts-ignore File only exists in dist folder
-const InitYosys: EmscriptenModuleFactory<YosysModule> = require('./yosys.js');
+const InitYosys: EmscriptenModuleFactory<YosysModule> = require('./yosys.node.js');
 /* eslint-enable @typescript-eslint/no-var-requires */
 
 export type EmscriptenFS = typeof FS;
