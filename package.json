@@ -9,6 +9,7 @@
     "repository": "github:EDAcation/yosys.js",
     "keywords": [
         "yosys",
+        "fpga",
         "rtl",
         "synthesis",
         "webassembly",
