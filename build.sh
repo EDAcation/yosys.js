@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Ensure all submodules are present (recursive)
+git submodule update --init --recursive
+
 # Create build directory
 rm -rf build
 mkdir -p build
