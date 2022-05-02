@@ -1,7 +1,7 @@
 {
     "name": "yosys",
     "description": "WebAssembly version of Yosys.",
-    "version": "0.16.2",
+    "version": "0.16.3",
     "license": "MIT",
     "contributors": [
         "Daniel Huisman <daniel@huisman.me> (https://danielhuisman.io)"
