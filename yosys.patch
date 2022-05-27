@@ -14,7 +14,7 @@
 +EMCC_LDFLAGS += -s NO_EXIT_RUNTIME=1
 +EMCC_LDFLAGS += -s EXPORTED_FUNCTIONS="['_main','_run','_prompt','_errmsg','_memset']"
 +EMCC_LDFLAGS += -s TOTAL_MEMORY=134217728
-+EMCC_LDFLAGS += -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap", "FS", "IDBFS", "NODEFS", "PROXYFS", "WORKERFS"]'
++EMCC_LDFLAGS += -s EXPORTED_RUNTIME_METHODS='["callMain", "ccall", "cwrap", "FS", "IDBFS", "NODEFS", "PROXYFS", "WORKERFS"]'
 +EMCC_LDFLAGS += -s MODULARIZE=1 -s EXPORT_NAME='Yosys'
  # https://github.com/kripken/emscripten/blob/master/src/settings.js
 -CXXFLAGS += $(EMCCFLAGS)
@@ -24,33 +24,33 @@
 +LDFLAGS += $(EMCC_LDFLAGS)
 +LDLIBS := -lproxyfs.js $(EMCC_LDLIBS)
  EXE = .js
- 
+
  DISABLE_SPAWN := 1
- 
+
  TARGETS := $(filter-out $(PROGRAM_PREFIX)yosys-config,$(TARGETS))
 -EXTRA_TARGETS += yosysjs-$(YOSYS_VER).zip
 +# EXTRA_TARGETS += yosysjs-$(YOSYS_VER).zip
- 
+
  ifeq ($(ENABLE_ABC),1)
  LINK_ABC := 1
 @@ -275,7 +277,7 @@
  	wget -O viz.js.part https://github.com/mdaines/viz.js/releases/download/0.0.3/viz.js
  	mv viz.js.part viz.js
- 
+
 -yosysjs-$(YOSYS_VER).zip: yosys.js yosys.wasm viz.js misc/yosysjs/*
 +yosysjs-$(YOSYS_VER).zip: yosys.js viz.js misc/yosysjs/*
  	rm -rf yosysjs-$(YOSYS_VER) yosysjs-$(YOSYS_VER).zip
  	mkdir -p yosysjs-$(YOSYS_VER)
  	cp viz.js misc/yosysjs/* yosys.js yosys.wasm yosysjs-$(YOSYS_VER)/
 @@ -429,7 +431,7 @@
- 
+
  ifeq ($(ENABLE_ZLIB),1)
  CXXFLAGS += -DYOSYS_ENABLE_ZLIB
 -LDLIBS += -lz
 +# LDLIBS += -lz
  endif
- 
- 
+
+
 @@ -988,10 +990,10 @@
  config-emcc: clean
  	echo 'CONFIG := emcc' > Makefile.conf
@@ -61,24 +61,24 @@
  	echo 'ENABLE_READLINE := 0' >> Makefile.conf
 -	echo 'ENABLE_ZLIB := 0' >> Makefile.conf
 +	echo 'ENABLE_ZLIB := 1' >> Makefile.conf
- 
+
  config-wasi: clean
  	echo 'CONFIG := wasi' > Makefile.conf
 --- yosys/kernel/register.cc	2022-03-19 18:20:08.592033745 +0100
 +++ yosys/kernel/register.cc	2022-03-19 18:21:39.912096058 +0100
 @@ -26,7 +26,7 @@
  #include <errno.h>
- 
+
  #ifdef YOSYS_ENABLE_ZLIB
 -#include <zlib.h>
 +#include "libs/zlib/zlib.h"
- 
+
  PRIVATE_NAMESPACE_BEGIN
  #define GZ_BUFFER_SIZE 8192
 --- yosys/libs/fst/fstapi.h	2022-03-19 18:20:14.696037901 +0100
 +++ yosys/libs/fst/fstapi.h	2022-03-19 18:21:56.072107115 +0100
 @@ -55,7 +55,7 @@
- 
+
  #include "stdint.h"
  #else
 -#include <zlib.h>
