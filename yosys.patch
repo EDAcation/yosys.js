@@ -1,5 +1,5 @@
---- Makefile	2022-05-30 17:07:16.025227248 +0200
-+++ Makefile	2022-05-30 17:09:07.093207560 +0200
+--- yosys/Makefile	2022-05-30 17:07:16.025227248 +0200
++++ yosys/Makefile	2022-05-30 17:09:07.093207560 +0200
 @@ -266,17 +266,18 @@
  EMCC_LDFLAGS += -s NO_EXIT_RUNTIME=1
  EMCC_LDFLAGS += -s EXPORTED_FUNCTIONS="['_main','_run','_prompt','_errmsg','_memset']"
