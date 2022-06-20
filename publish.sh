@@ -4,7 +4,7 @@ cd yosys
 
 UPSTREAM_COMMIT=$(git log --format="%H" -n 1)
 UPSTREAM_VERSION=$(
-    git describe --tags $(git rev-list --tags --max-count=1) \
+    git describe --tags --abbrev=0 $UPSTREAM_COMMIT \
     | cut -c 7-
 )
 UPSTREAM_MAJOR=$(echo $UPSTREAM_VERSION | cut -d '.' -f 1)
