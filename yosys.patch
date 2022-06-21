@@ -6,7 +6,7 @@
  EMCC_LDFLAGS += -s EXPORTED_FUNCTIONS="['_main','_run','_prompt','_errmsg','_memset']"
 -EMCC_LDFLAGS += -s TOTAL_MEMORY=134217728
 -EMCC_LDFLAGS += -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]'
-+EMCC_LDFLAGS += -s TOTAL_MEMORY=134217728 -s ALLOW_MEMORY_GROWTH=1
++EMCC_LDFLAGS += -s TOTAL_MEMORY=167772160 -s INITIAL_MEMORY=167772160 -s ALLOW_MEMORY_GROWTH=1
 +EMCC_LDFLAGS += -s EXPORTED_RUNTIME_METHODS='["callMain", "ccall", "cwrap", "FS", "IDBFS", "NODEFS", "PROXYFS", "WORKERFS"]'
 +EMCC_LDFLAGS += -s MODULARIZE=1 -s EXPORT_NAME='Yosys'
  # https://github.com/kripken/emscripten/blob/master/src/settings.js
