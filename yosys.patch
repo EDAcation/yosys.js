@@ -29,7 +29,7 @@
  ifeq ($(ENABLE_ZLIB),1)
  CXXFLAGS += -DYOSYS_ENABLE_ZLIB
 -LDLIBS += -lz
-+# LDLIBS += -lz
++ LDLIBS += -lz
  endif
 
 
