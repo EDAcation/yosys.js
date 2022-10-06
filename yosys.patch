@@ -6,7 +6,7 @@
  EMCC_LDFLAGS += -s EXPORTED_FUNCTIONS="['_main','_run','_prompt','_errmsg','_memset']"
 -EMCC_LDFLAGS += -s TOTAL_MEMORY=134217728
 -EMCC_LDFLAGS += -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]'
-+EMCC_LDFLAGS += -s TOTAL_MEMORY=2621440000
++EMCC_LDFLAGS += -s ALLOW_MEMORY_GROWTH=1
 +EMCC_LDFLAGS += -s EXPORTED_RUNTIME_METHODS='["callMain", "ccall", "cwrap", "FS", "IDBFS", "NODEFS", "PROXYFS", "WORKERFS"]'
 +EMCC_LDFLAGS += -s MODULARIZE=1 -s EXPORT_NAME='Yosys' -s LLD_REPORT_UNDEFINED=1
  # https://github.com/kripken/emscripten/blob/master/src/settings.js
@@ -41,8 +41,8 @@
 +	echo 'ENABLE_ABC := 1' >> Makefile.conf
  	echo 'ENABLE_PLUGINS := 0' >> Makefile.conf
  	echo 'ENABLE_READLINE := 0' >> Makefile.conf
--	echo 'ENABLE_ZLIB := 0' >> Makefile.conf
-+	echo 'ENABLE_ZLIB := 1' >> Makefile.conf
+	echo 'ENABLE_ZLIB := 0' >> Makefile.conf
+# +	echo 'ENABLE_ZLIB := 1' >> Makefile.conf
 
  config-wasi: clean
  	echo 'CONFIG := wasi' > Makefile.conf
