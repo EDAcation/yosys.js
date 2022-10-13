@@ -18,7 +18,7 @@ jobs:
       - name: Setup Emscripten
         uses: mymindstorm/setup-emsdk@v11
         with:
-          version: '3.1.21'
+          version: '3.0.1'
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
