@@ -8,12 +8,6 @@ git submodule update --init --recursive
 rm -rf build
 mkdir -p build
 
-# Download zlib
-if [ ! -d "yosys/libs/zlib" ]; then
-    mkdir -p yosys/libs/zlib
-    wget https://zlib.net/zlib-1.2.12.tar.gz -O - | tar -xz --strip-components=1 -C yosys/libs/zlib
-fi
-
 # Apply patches
 patch -p0 -f < yosys.patch
 

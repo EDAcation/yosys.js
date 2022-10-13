@@ -24,15 +24,6 @@
 
  ifeq ($(ENABLE_ABC),1)
  LINK_ABC := 1
-@@ -441,7 +442,7 @@
-
- ifeq ($(ENABLE_ZLIB),1)
- CXXFLAGS += -DYOSYS_ENABLE_ZLIB
--LDLIBS += -lz
-+# LDLIBS += -lz
- endif
-
-
 @@ -1010,10 +1011,10 @@
  config-emcc: clean
  	echo 'CONFIG := emcc' > Makefile.conf
@@ -42,29 +33,6 @@
  	echo 'ENABLE_PLUGINS := 0' >> Makefile.conf
  	echo 'ENABLE_READLINE := 0' >> Makefile.conf
 	echo 'ENABLE_ZLIB := 0' >> Makefile.conf
-# +	echo 'ENABLE_ZLIB := 1' >> Makefile.conf
 
  config-wasi: clean
  	echo 'CONFIG := wasi' > Makefile.conf
---- yosys/kernel/register.cc	2022-03-19 18:20:08.592033745 +0100
-+++ yosys/kernel/register.cc	2022-03-19 18:21:39.912096058 +0100
-@@ -26,7 +26,7 @@
- #include <errno.h>
-
- #ifdef YOSYS_ENABLE_ZLIB
--#include <zlib.h>
-+#include "libs/zlib/zlib.h"
-
- PRIVATE_NAMESPACE_BEGIN
- #define GZ_BUFFER_SIZE 8192
---- yosys/libs/fst/fstapi.h	2022-03-19 18:20:14.696037901 +0100
-+++ yosys/libs/fst/fstapi.h	2022-03-19 18:21:56.072107115 +0100
-@@ -55,7 +55,7 @@
-
- #include "stdint.h"
- #else
--#include <zlib.h>
-+#include "libs/zlib/zlib.h"
- #include <unistd.h>
- #endif
- #include <time.h>
