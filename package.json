@@ -4,7 +4,8 @@
     "version": "0.23.3",
     "license": "MIT",
     "contributors": [
-        "Daniel Huisman <daniel@huisman.me> (https://danielhuisman.io)"
+        "Daniel Huisman <daniel@huisman.me> (https://huismansoftware.nl)",
+        "Daan Middelkoop <daantje676@gmail.com>"
     ],
     "repository": "github:EDAcation/yosys.js",
     "keywords": [
