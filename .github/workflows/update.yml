@@ -1,8 +1,9 @@
 name: update
 
 on:
-  schedule:
-    - cron: '00 00 * * 1'
+  workflow_dispatch: {}
+  # schedule:
+  #   - cron: '00 00 * * 1'
 
 jobs:
   update:
